@@ -1,0 +1,18 @@
+[package]
+name = "skanuvaty"
+version = "0.1.0"
+edition = "2021"
+authors = ["@Esc4iCEscEsc"]
+description = "Blazing fast DNS/network/port scanner"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+clap = { version = "3.1.6", features = ["derive"] }
+async-channel = "1.6.1"
+tokio = { version = "1.17.0", features = ["full"] }
+futures = { version = "0.3.21" }
+trust-dns-client = "0.21.1"
+indicatif = "0.16.2"
+serde = { version = "1.0.136" , features = ["derive"] }
+serde_json = "1.0.79"

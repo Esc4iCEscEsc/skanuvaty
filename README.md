@@ -2,6 +2,8 @@
 
 Dangerously fast dns/network/port scanner, all-in-one. 
 
+![Demonstration](./demo.gif)
+
 Start with a domain, and we'll find everything about it.
 
 Features:

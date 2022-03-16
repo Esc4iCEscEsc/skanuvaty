@@ -3,7 +3,7 @@
 set -e
 
 # cross build --release --target x86_64-unknown-linux-gnu
-cross build --release --target x86_64-unknown-linux-musl
+RUSTFLAGS="--cfg tokio_unstable" cross build --release --target x86_64-unknown-linux-musl
 
 # strip target/x86_64-unknown-linux-gnu/release/skanuvaty
 strip target/x86_64-unknown-linux-musl/release/skanuvaty

@@ -112,6 +112,7 @@ async fn get_hostname_ips(dns_resolver: SocketAddr, hostname: &str) -> Option<Ve
 
 #[tokio::main(flavor = "multi_thread")]
 async fn main() {
+    // console_subscriber::init();
     let args = Args::parse();
 
     println!("######################");

@@ -304,25 +304,27 @@ async fn main() {
     tokio::spawn(bg);
 
     let root_addresses = get_hostname_ips(&mut client, &target).await;
-    match root_addresses {
+    let root_addresses = match root_addresses {
         Some(root_addresses) => {
-            let root_domain = RootDomain {
-                name: target.to_string(),
-                subdomains: found_subdomains,
-                addresses: root_addresses.into_iter().map(|ip| {
-                    Address {
-                        ip
-                    }
-                }).collect(),
-            };
-            let json = serde_json::to_string(&root_domain).unwrap();
-            let mut file = std::fs::File::create(output_file).unwrap();
-            file.write(json.as_bytes()).unwrap();
-            file.flush().unwrap();
-            println!("{:#?}", root_domain);
+            root_addresses
         },
         None => {
-            println!("Domain didn't have any addresses")
+            println!("Domain didn't have any addresses");
+            vec![]
         }
-    }
+    };
+    let root_domain = RootDomain {
+        name: target.to_string(),
+        subdomains: found_subdomains,
+        addresses: root_addresses.into_iter().map(|ip| {
+            Address {
+                ip
+            }
+        }).collect(),
+    };
+    let json = serde_json::to_string(&root_domain).unwrap();
+    let mut file = std::fs::File::create(output_file).unwrap();
+    file.write(json.as_bytes()).unwrap();
+    file.flush().unwrap();
+    println!("{:#?}", root_domain);
 }
